@@ -2,6 +2,7 @@
 import pytest
 from selene import browser
 from page_objects.registration_page import RegistrationPage
+from models.user import student
 
 
 @pytest.fixture(autouse=True)
@@ -14,30 +15,7 @@ def browser_management():
 
 
 def test_automation_practice_form():
-    registration_page = RegistrationPage()
-
-    registration_page.open() \
-        .fill_first_name('Evgeniy') \
-        .fill_last_name('Student') \
-        .fill_user_email('Stud_Evg@example.com') \
-        .select_gender('1') \
-        .fill_phone_number('9321217654') \
-        .set_birth_date(2000, 'June', 15) \
-        .fill_subjects('English') \
-        .select_hobby(1) \
-        .upload_picture('test.jpg') \
-        .fill_address('Moscow, Russia') \
-        .select_state('NCR') \
-        .select_city('Delhi') \
-        .submit() \
-        .should_have_registered(
-            first_name='Evgeniy',
-            last_name='Student',
-            email='Stud_Evg@example.com',
-            phone_number='9321217654',
-            birth_date='15 June,2000',
-            subject='English',
-            hobby='Sports',
-            address='Moscow, Russia',
-            state_and_city='NCR Delhi'
-        )
+    page = RegistrationPage()
+    page.open()
+    page.register(student)
+    page.should_have_registered(student)
