@@ -1,7 +1,7 @@
 # tests/test_registration.py
 import pytest
 from selene import browser
-from Part_1.page_objects.registration_page import RegistrationPage
+from page_objects.registration_page import RegistrationPage
 
 
 @pytest.fixture(autouse=True)
